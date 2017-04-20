@@ -1,0 +1,41 @@
+/**
+*  Placard styles
+*/
+body {
+    padding: 0;
+    margin: 0;
+}
+div#bartonplus_placard {
+    font-size:14px;
+    font-family: Tahoma, Verdana, Arial, sans-serif;
+}
+div#bartonplus_placard h2 {
+    font-size:22px;
+    margin: 0;
+    padding-bottom:1em;
+}
+div#bartonplus_placard p {
+    margin: 0;
+}
+div#bartonplus_placard ul.inline {
+    padding-bottom: 1em;
+    padding-left: 0;
+    margin: 0;
+}
+div#bartonplus_placard ul.inline li {
+    display:inline;
+    border-left: 1px solid #333;
+    padding: 0 0.5em;
+}
+div#bartonplus_placard ul.inline li:first-child {
+    border-left: 0;
+    padding-left: 0;
+}
+div#bartonplus_placard a {
+    color:#32327d;
+    text-decoration: none;
+}
+div#bartonplus_placard a:hover,
+div#bartonplus_placard a:focus {
+    text-decoration: underline;
+}

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<base target="_parent">
+	<title>Hours and Locations : MIT Libraries</title>
+	<link href="placards.css" rel="stylesheet" type="text/css">
+	 <script type="text/javascript" src="/scripts/jquery-1.6.1.min.js"></script>
+	 <script type="text/javascript">
+	 $(function() {
+	 	TrackEvent('Placard','Hours','Display',1);
+
+	 	$("#bartonplus_placard a").mousedown(function(e) {
+	 		var link = $(e.target).text();
+	 		TrackEvent('Placard','Hours',link,e.which);
+	 	});
+
+	 });
+
+    function TrackEvent(Category,Action,Label,Value){
+        _gaq.push(['_trackEvent', Category, Action, Label, Value]);
+    }
+    </script>
+    <script type="text/javascript" src="ga.js"></script>
+</head>
+<body>
+	<div id="bartonplus_placard">
+		<h2 data-role="term"><a href="http://libraries.mit.edu/locations">Hours and Locations</a></h2>
+		<ul class="inline">
+			<li><a href="http://libraries.mit.edu/barker" data-role="barker">Barker Library</a></li>
+			<li><a href="http://libraries.mit.edu/dewey" data-role="dewey">Dewey Library</a></li>
+			<li><a href="http://libraries.mit.edu/hayden" data-role="hayden">Hayden Library</a></li>
+			<li><a href="http://libraries.mit.edu/archives" data-role="archives">Institute Archives &amp; Special Collections</a></li>
+			<li><a href="http://libraries.mit.edu/music" data-role="lewis">Lewis Music Library</a></li>
+			<li><a href="http://libraries.mit.edu/rotch" data-role="rotch">Rotch Library</a></li>
+		</ul>
+		<ul class="inline">
+			<li><a href="http://libraries.mit.edu/hours/" data-role="hours">All hours</a></li>
+			<li><a href="http://libraries.mit.edu/locations/" data-role="locations">All locations</a></li>
+			<li><a href="http://libraries.mit.edu/locations/#!map" data-role="map">Map</a></li>
+		</ul>
+	</div>
+</body>
+</html>
