@@ -1,3 +1,6 @@
+// Original MIT script: https://github.com/MITLibraries/eds-placard/blob/master/eadmin/admin_databases.html
+
+
 <div><center>This widget is attempting to put an iframe into a custom placard area</center></div>
 <div id="mysearch" style="display:none">ep.SearchTerm</div>
 
@@ -6,50 +9,60 @@
 <script type="text/javascript">
 // functions
 function CleanSearchTerm(strTerm) {
-
     // Cast everything to lower case
     strTerm = strTerm.toLowerCase();
-
     // TI and AU prefixes exist at this point - so lets strip out TI if it starts the phrase
     if (strTerm.indexOf("ti ") === 0) {
         strTerm = strTerm.replace('ti ','');
     }
-
     // Trim all spaces (grabs "sciencedirect" and "science direct", as well as "web of science")
     // from http://stackoverflow.com/questions/1144783/replacing-all-occurrences-of-a-string-in-javascript#answer-1145525
-    strTerm = strTerm.split(' ').join('');
+    //strTerm = strTerm.split('  ').join(' ');
     
     // Alternate variants (this is hackish)
-
     // ASTM Standards
     if (strTerm == 'astmstandards') {
         strTerm = 'astm';
     }
-
     // IEEE Xplore
     if (strTerm == 'ieeexplore' || strTerm == 'explore' || strTerm == 'ieeeexplore') {
         strTerm = 'ieee';
     }
-
     // grab "web of knowledge" and convert to "web of science"
     if (strTerm == 'webofknowledge') {
         strTerm = 'webofscience';
-    }
-
+   }
+    // Grab any searach containing "acls and convert the searchrerm to only "acls". Added by cybrbrl.
+    if (strTerm.includes('acls')) {
+        strTerm = 'acls';
+          }
     return strTerm;
 }
-
 function NoPlacard() {
     $('.related-info-area:contains("Placard (iframe) - databases")', window.parent.document).css('display','none');
 }
+// Main body of script.
 
-// Main body of script
 var searchterm = document.getElementById('mysearch').innerHTML;
 searchterm = CleanSearchTerm(searchterm);  
-
-if(searchterm === "astm" || searchterm === "ieee" || searchterm === "sciencedirect" || searchterm === "webofscience"){
-    
-    var resultdiv1 = '<div id="bartonplus_placard"><iframe src="//libraries.mit.edu/eds/placard_databases.php?term=' + searchterm + '" seamless="seamless" width="100%"></iframe></div>';    
+if(
+ //   Stub. List of cleaned and normalized database names, exported from LibGuides. Added by cybrbrl.
+searchterm === "astm" || 
+searchterm === "ieee" || 
+searchterm === "sciencedirect" || 
+searchterm === "webofscience" || 
+searchterm === "acls" ||  
+searchterm === "acm digital library" || 
+searchterm === "alexander street videos" || 
+searchterm === "american chemical society" || 
+searchterm === "american film scripts" || 
+searchterm === "american history in video" || 
+searchterm === "american institute of physics" || 
+searchterm === "ap images" || 
+searchterm === "art and architecture in video"
+){
+//  Changed from MIT's iframe to Springshare LibGuides widget iframe. Changed by cybrgrl.
+    var resultdiv1 = '<div id="Database_placard"><iframe src="//lgapi-us.libapps.com/widgets.php?site_id=626&widget_type=2&search_terms=' + searchterm + '&search_match=2&subject_ids=&az_types=&sort_by=best_bets&list_format=1&drop_text=Select+a+Database...&output_format=1&load_type=2&enable_description=0&widget_embed_type=2&num_results=2&enable_more_results=1&window_target=2&config_id=1494863814662"></iframe></div>';    
     $('.result-list', window.parent.document).before(resultdiv1);
     $('.related-info-area:contains("Placard (iframe) - databases")', window.parent.document).css('display','none');
     
